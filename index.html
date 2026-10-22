@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="How AI industrialized our oldest scientific mistake">
+<title>You&#039;re Probably Doing Data Analysis with AI Wrong: How AI Industrialized Our Oldest Scientific Mistake — Garden Research</title>
+<link rel="canonical" href="https://gardenresearch.eu/library/the-death-of-the-hypothesis">
+
+<meta property="og:site_name" content="Garden Research">
+<meta property="og:title" content="You&#039;re Probably Doing Data Analysis with AI Wrong: How AI Industrialized Our Oldest Scientific Mistake">
+<meta property="og:description" content="How AI industrialized our oldest scientific mistake">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://gardenresearch.eu/library/the-death-of-the-hypothesis">
+<meta property="og:image" content="https://gardenresearch.eu/media/pages/library/the-death-of-the-hypothesis/c6aabf1827-1782259872/cover.jpg">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="You&#039;re Probably Doing Data Analysis with AI Wrong: How AI Industrialized Our Oldest Scientific Mistake">
+<meta name="twitter:description" content="How AI industrialized our oldest scientific mistake">
+<meta name="twitter:image" content="https://gardenresearch.eu/media/pages/library/the-death-of-the-hypothesis/c6aabf1827-1782259872/cover.jpg">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"You're Probably Doing Data Analysis with AI Wrong: How AI Industrialized Our Oldest Scientific Mistake","description":"How AI industrialized our oldest scientific mistake","url":"https://gardenresearch.eu/library/the-death-of-the-hypothesis","image":"https://gardenresearch.eu/media/pages/library/the-death-of-the-hypothesis/c6aabf1827-1782259872/cover.jpg","datePublished":"2026-04-23T00:00:00+00:00","dateModified":"2026-04-23T00:00:00+00:00","author":{"@type":"Organization","name":"Garden Research","url":"https://gardenresearch.eu","logo":{"@type":"ImageObject","url":"https://gardenresearch.eu/assets/img/garden-research-logo.png"}},"publisher":{"@type":"Organization","name":"Garden Research","url":"https://gardenresearch.eu","logo":{"@type":"ImageObject","url":"https://gardenresearch.eu/assets/img/garden-research-logo.png"}}}</script>
+
+<link rel="stylesheet" href="https://gardenresearch.eu/assets/css/main.css?v=1791134178">
+<!-- Google Analytics (GA4) — production only -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WJHREGVMYF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WJHREGVMYF');
+</script>
+</head>
+<body class="p-article">
+
+<header class="header">
+  <nav class="nav">
+    <span class="nav-mark" aria-hidden="true"><svg class="nav-mark-svg" viewBox="0 0 100 100" style="width:1.05em;height:1.05em;display:block"><defs><filter id="goo-mark-static" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/><feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -11"/></filter></defs><g filter="url(#goo-mark-static)" fill="currentColor"><circle cx="50" cy="50" r="13.2"/><circle cx="73.76" cy="50" r="12.54"/><circle cx="57.34" cy="72.6" r="12.54"/><circle cx="30.78" cy="63.97" r="12.54"/><circle cx="30.78" cy="36.03" r="12.54"/><circle cx="57.34" cy="27.4" r="12.54"/></g></svg><script>
+  // Synchronous pre-paint hydration: rewrite the static SVG's circle
+  // positions to match the last animation time saved in sessionStorage,
+  // so reloads/navigations show the flower's last state instead of the
+  // neutral pose. Runs during HTML parse — before first paint.
+  (function(){
+    var t = 0, ph = null;
+    try {
+      t = parseFloat(sessionStorage.getItem('navMarkT') || '0') || 0;
+      var raw = sessionStorage.getItem('navMarkPhases');
+      if (raw) ph = JSON.parse(raw);
+    } catch (e) {}
+    if (!ph || ph.length !== 5 || t === 0) return;
+    var svg = document.currentScript.previousElementSibling;
+    if (!svg) return;
+    var circles = svg.querySelectorAll('circle');
+    if (circles.length !== 6) return;
+    var R = 33, CX = 50, CY = 50;
+    circles[0].setAttribute('r', R * 0.40 * (1 + 0.03 * Math.sin(t * 0.8)));
+    var baseDist = R * 0.72;
+    var basePetalR = Math.min(R * 0.38, baseDist * Math.sin(Math.PI / 5) * 0.99);
+    var rot = t * 0.05;
+    for (var i = 0; i < 5; i++) {
+      var p = ph[i];
+      var ang = (i / 5) * 6.283 + rot
+              + 0.14 * (Math.sin(t * p.fa + p.a) - Math.sin(p.a));
+      var dist = baseDist * (1 + 0.10 * (Math.sin(t * p.fd + p.d) - Math.sin(p.d)));
+      var pr = basePetalR * (1 + 0.12 * (Math.sin(t * p.fr + p.r) - Math.sin(p.r)));
+      var c = circles[i + 1];
+      c.setAttribute('cx', CX + Math.cos(ang) * dist);
+      c.setAttribute('cy', CY + Math.sin(ang) * dist);
+      c.setAttribute('r', pr);
+    }
+  })();
+</script></span>
+    <span class="nav-links">
+                    <a href="https://gardenresearch.eu">Home,</a>
+                            <a href="https://gardenresearch.eu/library" class="active">Journal,</a>
+                            <a href="https://gardenresearch.eu/lab">Lab,</a>
+                            <a href="https://gardenresearch.eu/work">Practice,</a>
+                            <a href="https://gardenresearch.eu/about">About</a>
+                  </span>
+  </nav>
+  <div class="header-right links">
+    <img class="logo" src="https://gardenresearch.eu/assets/img/garden-research-logo.png" alt="Garden Research" width="4237" height="1529">
+      </div>
+</header>
+
+
+
+
+<main class="case" data-screen-label="Field Kit"><aside class="rail"><div class="client"><time class="cl" datetime="2026-10-22">22.10.2026</time></div><nav class="toc" aria-label="Table of contents"><ol><li><a href="#search-retrieval-apis" data-sec="search-retrieval-apis"><span class="n">01</span><span>Search &amp; Retrieval APIs for Agents</span></a></li><li><a href="#web-to-data" data-sec="web-to-data"><span class="n">02</span><span>Web-to-Data: Scraping as an API</span></a></li><li><a href="#scholarly-data-apis" data-sec="scholarly-data-apis"><span class="n">03</span><span>Scholarly &amp; Structured Data APIs</span></a></li><li><a href="#knowledge-graphs" data-sec="knowledge-graphs"><span class="n">04</span><span>Knowledge Graphs &amp; Reference Data</span></a></li><li><a href="#mcp-connectors" data-sec="mcp-connectors"><span class="n">05</span><span>The MCP Layer: Catalogues of Connectors</span></a></li><li><a href="#rag-infrastructure" data-sec="rag-infrastructure"><span class="n">06</span><span>RAG &amp; Retrieval Infrastructure</span></a></li><li><a class="back-link" href="https://gardenresearch.eu/library"><span>back to library</span></a></li></ol></nav></aside><article class="article"><header class="article-header"><h1 class="case-title">The Access Layer: 33 Ways an Agent Reaches Data — and What Quietly Went Paid in 2026</h1></header><section class="section"><p class="deck"></p>
+<p><strong>Everyone talks about the model. Almost no one talks about the layer underneath it — how an agent actually reaches data.</strong></p>
+<p>That layer is where research with AI is won or lost. And in 2026 it is quietly splitting into what stays open and what slips behind a meter. Below: 33 connectors, data-APIs and gateways a researcher — or an agent — can reach right now, grouped by what they do, each marked by how you get in. <em>open</em> = free, no key. <em>free-key</em> = free, needs a key. <em>freemium</em> = free tier, then paid. <em>paid</em> = no real free tier.</p>
+</section><section class="section" id="search-retrieval-apis"><div class="section-head"><span class="sn">01</span><h2>Search &amp; Retrieval APIs for Agents</h2></div><p><strong>Exa</strong> — (ex-Metaphor) semantic search + page contents built for LLMs. <em>freemium.</em> <a href="https://exa.ai">exa.ai</a></p><p><strong>Tavily</strong> — search API tuned for agents, LLM-ready output. <em>freemium.</em> <a href="https://tavily.com">tavily.com</a></p><p><strong>Perplexity Sonar API</strong> — search-grounded answers with citations. <em>paid.</em> <a href="https://docs.perplexity.ai">docs.perplexity.ai</a></p><p><strong>Brave Search API</strong> — independent index, JSON output. <em>freemium (slashed Feb 2026).</em> <a href="https://brave.com/search/api">brave.com/search/api</a></p><p><strong>You.com API</strong> — Search / Contents / Answer / Research. <em>freemium.</em> <a href="https://you.com/platform">you.com/platform</a></p><p><strong>Serper</strong> — fast Google SERP API. <em>freemium.</em> <a href="https://serper.dev">serper.dev</a></p><p><strong>SerpAPI</strong> — SERP scraping across many engines. <em>freemium.</em> <a href="https://serpapi.com">serpapi.com</a></p><p><strong>Kagi Search API</strong> — premium results + content extract. <em>paid.</em> <a href="https://help.kagi.com/kagi/api">help.kagi.com</a></p><p><strong>Jina Reader</strong> — any URL &rarr; clean LLM-ready markdown via r.jina.ai/&lt;url&gt;. <em>open.</em> <a href="https://jina.ai/reader">jina.ai/reader</a></p><p><strong>Jina Search / Embeddings</strong> — web search in markdown + embeddings and reranking. <em>freemium.</em> <a href="https://jina.ai">jina.ai</a></p></section><section class="section" id="web-to-data"><div class="section-head"><span class="sn">02</span><h2>Web-to-Data: Scraping as an API</h2></div><p><strong>Firecrawl</strong> — scrape / crawl / search sites &rarr; markdown; hosts the Alexandria gateway. <em>freemium.</em> <a href="https://firecrawl.dev">firecrawl.dev</a></p><p><strong>ScrapingBee</strong> — JS rendering + proxies &rarr; HTML and data. <em>freemium.</em> <a href="https://scrapingbee.com">scrapingbee.com</a></p><p><strong>Apify</strong> — platform of scraper actors + a datasets store. <em>freemium.</em> <a href="https://apify.com">apify.com</a></p><p><strong>Diffbot</strong> — extraction plus a full Knowledge Graph API. <em>freemium.</em> <a href="https://diffbot.com">diffbot.com</a></p><p><strong>Common Crawl</strong> — open petabyte-scale web archive (WARC). <em>open.</em> <a href="https://commoncrawl.org">commoncrawl.org</a></p></section><section class="section" id="scholarly-data-apis"><div class="section-head"><span class="sn">03</span><h2>Scholarly &amp; Structured Data APIs</h2></div><p><strong>OpenAlex</strong> — graph of ~250M works, authors, institutions. <em>open.</em> <a href="https://openalex.org">openalex.org</a></p><p><strong>Semantic Scholar API</strong> — metadata, citations, embeddings, DOI batch. <em>free-key.</em> <a href="https://api.semanticscholar.org">api.semanticscholar.org</a></p><p><strong>Crossref API</strong> — DOI and publication metadata. <em>open.</em> <a href="https://api.crossref.org">api.crossref.org</a></p><p><strong>Unpaywall</strong> — legal open-access full texts by DOI. <em>open.</em> <a href="https://unpaywall.org/products/api">unpaywall.org</a></p><p><strong>CORE</strong> — aggregator of 300M+ open-access full texts. <em>free-key.</em> <a href="https://core.ac.uk/services/api">core.ac.uk</a></p><p><strong>DataCite API</strong> — DOI metadata for datasets and objects. <em>open.</em> <a href="https://support.datacite.org/docs/api">datacite.org</a></p><p><strong>Europe PMC</strong> — biomed literature + full texts, REST. <em>open.</em> <a href="https://europepmc.org/RestfulWebService">europepmc.org</a></p><p><strong>arXiv API</strong> — preprint metadata (Atom). <em>open.</em> <a href="https://info.arxiv.org/help/api">info.arxiv.org/help/api</a></p><p><strong>Papers With Code API</strong> — papers &harr; code &harr; SOTA benchmarks (API status shaky since 2025). <em>open.</em> <a href="https://paperswithcode.com/api/v1/docs">paperswithcode.com</a></p><p><strong>Hugging Face Datasets / Hub</strong> — thousands of datasets + rows over API. <em>free-key.</em> <a href="https://huggingface.co/docs/datasets-server">huggingface.co</a></p></section><section class="section" id="knowledge-graphs"><div class="section-head"><span class="sn">04</span><h2>Knowledge Graphs &amp; Reference Data</h2></div><p><strong>Wikidata</strong> — free knowledge graph, SPARQL + REST. <em>open.</em> <a href="https://query.wikidata.org">query.wikidata.org</a></p><p><strong>Wolfram Alpha API</strong> — computational knowledge and facts. <em>freemium.</em> <a href="https://products.wolframalpha.com/api">wolframalpha.com/api</a></p><p><strong>DBpedia</strong> — knowledge graph from Wikipedia, public SPARQL. <em>open.</em> <a href="https://dbpedia.org/sparql">dbpedia.org/sparql</a></p></section><section class="section" id="mcp-connectors"><div class="section-head"><span class="sn">05</span><h2>The MCP Layer: Catalogues of Connectors</h2></div><p><strong>Official MCP Registry</strong> — the canonical registry of MCP servers. <em>open.</em> <a href="https://github.com/modelcontextprotocol/registry">github.com/modelcontextprotocol</a></p><p><strong>mcp.so</strong> — the largest public catalogue of MCP servers. <em>open.</em> <a href="https://mcp.so">mcp.so</a></p><p><strong>Smithery / Glama / PulseMCP</strong> — directories + hosting for MCP servers. <em>open.</em> <a href="https://smithery.ai">smithery.ai</a></p></section><section class="section" id="rag-infrastructure"><div class="section-head"><span class="sn">06</span><h2>RAG &amp; Retrieval Infrastructure</h2></div><p><strong>LlamaIndex</strong> — indexing and retrieval framework for RAG. <em>open-source.</em> <a href="https://llamaindex.ai">llamaindex.ai</a></p><p><strong>LangChain / LangGraph</strong> — chain and agent orchestration + retrievers. <em>open-source.</em> <a href="https://langchain.com">langchain.com</a></p><p><strong>Vector DBs with a free tier</strong> — Qdrant, Weaviate, Chroma, pgvector, Milvus. <em>open-source.</em> <a href="https://qdrant.tech">qdrant.tech</a></p></section><section class="section"><blockquote><p>The paywall was never the hard part. The access layer is going quiet-paid — but the open scientific APIs (OpenAlex, Crossref, arXiv, Unpaywall, Europe PMC, Wikidata, Common Crawl) still ask nothing. Build the agent on those, and it stays free.</p></blockquote></section></article></main>
+
+<footer class="footer">
+  <div class="footer-cols">
+    <nav class="footer-col" aria-label="Navigate">
+      <h2 class="footer-col-head">Navigate</h2>
+      <a href="https://gardenresearch.eu/library">Journal</a>
+      <a href="https://gardenresearch.eu/lab">Lab</a>
+      <a href="https://gardenresearch.eu/work">Practice</a>
+      <a href="https://gardenresearch.eu/about">About</a>
+      <span class="footer-soon" data-soon="coming soon">Herbarium</span>
+      <a href="https://gardenresearch.eu/impressum">Impressum</a>
+    </nav>
+    <div class="footer-col" aria-label="Contact">
+      <h2 class="footer-col-head">Contact</h2>
+      <a href="mailto:a@gardenresearch.eu">a@gardenresearch.eu</a>
+    </div>
+    <nav class="footer-col" aria-label="Elsewhere">
+      <h2 class="footer-col-head">Elsewhere</h2>
+      <a href="https://researchgarden.substack.com" target="_blank" rel="noopener">Substack</a>
+      <a href="https://www.are.na/angelina-s-garden/channels" target="_blank" rel="noopener">Are.na</a>
+      <a href="https://instagram.com/gardenresearch" target="_blank" rel="noopener">Instagram</a>
+    </nav>
+  </div>
+  <p class="footer-legal">
+    <span>© 2026 Garden Research</span>
+  </p>
+</footer>
+<script src="https://gardenresearch.eu/assets/js/main.js?v=1791133025" defer></script>
+</body>
+</html>
