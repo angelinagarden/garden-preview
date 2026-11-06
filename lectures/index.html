@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Garden — лекции (прототип)</title>
+<style>
+  :root{
+    /* Garden palette, carried into a dark cinematic (MUBI-like) treatment */
+    --bg:#0b0b0c; --panel:#141416; --ink:#f3f1ec; --sub:#9a9a95; --faint:#6a6a66;
+    --line:#262523; --blue:#2f6bff; --red:#FF4000; --green:#04B038; --purple:#8B48D2; --gold:#E8E398;
+    --sans:Arial,Helvetica,sans-serif;
+    --side:clamp(14px,3.2vw,46px);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ -webkit-text-size-adjust:100%; }
+  body{ background:var(--bg); color:var(--ink); font-family:var(--sans); line-height:1.3;
+    -webkit-font-smoothing:antialiased; }
+  a{ color:inherit; text-decoration:none; }
+  img{ display:block; width:100%; height:100%; object-fit:cover; }
+  .wrap{ padding:0 var(--side); }
+  .proto-note{ background:var(--gold); color:#000; font-size:12px; font-weight:700; text-align:center; padding:6px; }
+
+  /* header */
+  .header{ position:sticky; top:0; z-index:30; display:flex; align-items:center; justify-content:space-between;
+    padding:13px var(--side); background:rgba(11,11,12,.72); backdrop-filter:blur(10px) saturate(1.1);
+    border-bottom:1px solid var(--line); }
+  .brand{ display:flex; align-items:center; gap:9px; font-weight:700; font-size:17px; letter-spacing:-0.01em; }
+  .mark{ width:1.15em; height:1.15em; color:var(--ink); }
+  .nav{ display:flex; gap:20px; font-size:13.5px; }
+  .nav a{ color:var(--sub); } .nav a.active,.nav a:hover{ color:var(--ink); }
+  .nav .soon{ color:var(--faint); cursor:default; }
+
+  /* hero — full-bleed cinematic still */
+  .hero{ position:relative; min-height:clamp(420px,72vh,640px); display:flex; align-items:flex-end;
+    overflow:hidden; border-bottom:1px solid var(--line); }
+  .hero .still{ position:absolute; inset:0; }
+  .hero .still img{ filter:saturate(.92) contrast(1.03); }
+  .hero .scrim{ position:absolute; inset:0;
+    background:linear-gradient(180deg,rgba(11,11,12,.25) 0%,rgba(11,11,12,.15) 38%,rgba(11,11,12,.92) 100%); }
+  .hero .inner{ position:relative; z-index:2; padding:0 var(--side) clamp(30px,5vw,60px); max-width:900px; }
+  .kicker{ font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink); opacity:.85; margin-bottom:16px; }
+  .hero h1{ font-size:clamp(28px,5.4vw,60px); line-height:1.03; letter-spacing:-0.03em; font-weight:700; max-width:18ch; }
+  .hero .line{ margin-top:16px; max-width:50ch; font-size:clamp(14px,1.5vw,18px); color:#d9d7d0; }
+  .hero .cta{ margin-top:24px; display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{ font-family:var(--sans); font-size:14px; font-weight:700; border:1px solid var(--ink);
+    background:var(--ink); color:#000; padding:11px 20px; border-radius:999px; cursor:pointer; }
+  .btn.ghost{ background:transparent; color:var(--ink); }
+  .btn:hover{ background:var(--blue); border-color:var(--blue); color:#fff; }
+
+  /* filters */
+  .filters{ display:flex; flex-wrap:wrap; gap:7px; padding:20px 0 4px; }
+  .chip{ font-family:var(--sans); font-size:13px; font-weight:700; border:1px solid var(--line);
+    background:transparent; color:var(--sub); padding:6px 13px; border-radius:999px; cursor:pointer;
+    transition:background .12s,color .12s,border-color .12s; }
+  .chip:hover,.chip.active{ color:#fff; border-color:transparent; }
+  .chip:nth-child(6n+1):hover,.chip:nth-child(6n+1).active{ background:var(--blue); }
+  .chip:nth-child(6n+2):hover,.chip:nth-child(6n+2).active{ background:var(--red); }
+  .chip:nth-child(6n+3):hover,.chip:nth-child(6n+3).active{ background:var(--green); }
+  .chip:nth-child(6n+4):hover,.chip:nth-child(6n+4).active{ background:var(--purple); }
+  .chip:nth-child(6n+5):hover,.chip:nth-child(6n+5).active{ background:var(--gold); color:#000; }
+  .chip[data-all]:hover,.chip[data-all].active{ background:#fff; color:#000; }
+
+  /* sections */
+  .sec{ padding:clamp(30px,4.2vw,56px) 0; }
+  .sec-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:20px; gap:16px; }
+  .sec-head h2{ font-size:clamp(16px,2vw,22px); letter-spacing:-0.01em; font-weight:700; }
+  .sec-head .more{ font-size:13px; color:var(--sub); white-space:nowrap; } .sec-head .more:hover{ color:var(--ink); }
+
+  /* poster wall — MUBI-like portrait posters */
+  .wall{ display:grid; grid-template-columns:repeat(5,1fr); gap:clamp(10px,1.3vw,18px); }
+  .poster{ cursor:pointer; }
+  .poster .pic{ aspect-ratio:2/3; border-radius:5px; overflow:hidden; position:relative; background:var(--panel);
+    transition:transform .35s cubic-bezier(.2,.7,.2,1); }
+  .poster:hover .pic{ transform:translateY(-4px); }
+  .poster .pic img{ transition:transform .5s ease, filter .3s ease; filter:saturate(.95); }
+  .poster:hover .pic img{ transform:scale(1.05); }
+  .poster .dur{ position:absolute; right:8px; top:8px; font-size:11px; font-weight:700; color:#fff;
+    background:rgba(0,0,0,.6); border-radius:5px; padding:2px 6px; }
+  .poster .play{ position:absolute; left:8px; bottom:8px; width:30px; height:30px; border-radius:50%;
+    background:rgba(255,255,255,.95); display:grid; place-items:center; opacity:0; transform:translateY(6px);
+    transition:opacity .25s,transform .25s; }
+  .poster:hover .play{ opacity:1; transform:none; }
+  .poster .play svg{ width:11px; height:11px; margin-left:2px; }
+  .poster .t{ font-size:14px; font-weight:700; margin-top:9px; line-height:1.18; letter-spacing:-0.01em; }
+  .poster .w{ font-size:12.5px; color:var(--sub); margin-top:3px; }
+  .poster .f{ font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--faint); margin-top:6px; }
+
+  /* feature — lecture of the week, big landscape still */
+  .feature{ display:grid; grid-template-columns:1.5fr 1fr; gap:clamp(16px,2.4vw,36px); align-items:center; }
+  .feature .still{ aspect-ratio:16/9; border-radius:7px; overflow:hidden; background:var(--panel); position:relative; }
+  .feature .still .play{ position:absolute; inset:0; margin:auto; width:58px; height:58px; border-radius:50%;
+    background:rgba(255,255,255,.95); display:grid; place-items:center; }
+  .feature .still .play svg{ width:18px; height:18px; margin-left:3px; }
+  .feature .meta .tag{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--sub); }
+  .feature .meta h3{ font-size:clamp(22px,3vw,38px); line-height:1.06; letter-spacing:-0.02em; margin:12px 0 8px; }
+  .feature .meta .who{ font-size:15px; color:var(--ink); }
+  .feature .meta .desc{ margin-top:14px; font-size:15px; color:var(--sub); max-width:46ch; }
+  .feature .meta .row{ margin-top:18px; display:flex; gap:14px; align-items:center; font-size:13px; color:var(--sub); }
+
+  /* collections */
+  .cols{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,20px); }
+  .col{ border-radius:7px; overflow:hidden; cursor:pointer; position:relative; aspect-ratio:3/2; background:var(--panel); }
+  .col img{ filter:brightness(.55) saturate(.9); transition:filter .3s, transform .5s; }
+  .col:hover img{ filter:brightness(.42) saturate(.9); transform:scale(1.04); }
+  .col .ov{ position:absolute; inset:0; padding:18px; display:flex; flex-direction:column; justify-content:flex-end; z-index:2; }
+  .col .n{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#d9d7d0; }
+  .col h3{ font-size:20px; letter-spacing:-0.01em; margin:6px 0 6px; }
+  .col .count{ font-size:12px; color:var(--gold); font-weight:700; }
+
+  /* footer */
+  .footer{ padding:clamp(34px,5vw,60px) var(--side) 48px; color:var(--sub); font-size:13px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px; border-top:1px solid var(--line); margin-top:24px; }
+  .footer a{ color:var(--faint); } .footer a:hover{ color:var(--ink); }
+
+  @media (max-width:1000px){ .wall{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:760px){ .wall{ grid-template-columns:repeat(2,1fr); } .feature{ grid-template-columns:1fr; } .cols{ grid-template-columns:1fr; } .nav{ display:none; } }
+</style>
+</head>
+<body>
+
+<div class="proto-note">Прототип · картинки — сток (Lorem Picsum), заглушки · айдентика Garden в тёмном MUBI-подобном виде</div>
+
+<header class="header">
+  <a class="brand" href="#">
+    <svg class="mark" viewBox="0 0 100 100" aria-hidden="true"><defs><filter id="goo" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/><feColorMatrix in="b" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 24 -11"/></filter></defs><g filter="url(#goo)" fill="currentColor"><circle cx="50" cy="50" r="13.2"/><circle cx="73.76" cy="50" r="12.54"/><circle cx="57.34" cy="72.6" r="12.54"/><circle cx="30.78" cy="63.97" r="12.54"/><circle cx="30.78" cy="36.03" r="12.54"/><circle cx="57.34" cy="27.4" r="12.54"/></g></svg>
+    Garden
+  </a>
+  <nav class="nav">
+    <a href="#" class="active">Лекции</a>
+    <a href="#">Подборки</a>
+    <a href="#">Учёные</a>
+    <a href="#">Читать</a>
+    <span class="soon">Войти</span>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="still"><img src="https://picsum.photos/seed/gardenhero7/1700/900" alt=""></div>
+    <div class="scrim"></div>
+    <div class="inner">
+      <div class="kicker">Лекция недели · новое каждую неделю</div>
+      <h1>Отобранные лекции настоящих учёных.</h1>
+      <div class="line">Не всё подряд — придирчивый отбор: по одной сильной лекции за раз, с рамкой, зачем её смотреть и что держать в голове.</div>
+      <div class="cta">
+        <button class="btn">▶ Смотреть</button>
+        <button class="btn ghost">Как мы отбираем</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="filters">
+      <button class="chip active" data-all>Все</button>
+      <button class="chip">Философия</button>
+      <button class="chip">Нейронаука</button>
+      <button class="chip">ИИ и знание</button>
+      <button class="chip">Климат</button>
+      <button class="chip">Математика</button>
+      <button class="chip">Антропология</button>
+      <button class="chip">Физика</button>
+    </div>
+  </div>
+
+  <section class="sec wrap">
+    <div class="sec-head"><h2>Сейчас показываем</h2><a class="more" href="#">весь архив →</a></div>
+    <div class="wall">
+      <article class="poster"><div class="pic"><img src="https://picsum.photos/seed/glp1/600/900" alt=""><span class="dur">52 мин</span><span class="play"><svg viewBox="0 0 10 12" fill="#000"><path d="M0 0l10 6-10 6z"/></svg></span></div><div class="t">Что ИИ делает с научным методом</div><div class="w">Приглашённый учёный</div><div class="f">ИИ и знание</div></article>
+      <article class="poster"><div class="pic"><img src="https://picsum.photos/seed/glp2/600/900" alt=""><span class="dur">41 мин</span><span class="play"><svg viewBox="0 0 10 12" fill="#000"><path d="M0 0l10 6-10 6z"/></svg></span></div><div class="t">Как устроена память</div><div class="w">Нейробиолог</div><div class="f">Нейронаука</div></article>
+      <article class="poster"><div class="pic"><img src="https://picsum.photos/seed/glp3/600/900" alt=""><span class="dur">1 ч 05</span><span class="play"><svg viewBox="0 0 10 12" fill="#000"><path d="M0 0l10 6-10 6z"/></svg></span></div><div class="t">Открытый веб после агентов</div><div class="w">Исследователь инфраструктуры</div><div class="f">ИИ и знание</div></article>
+      <article class="poster"><div class="pic"><img src="https://picsum.photos/seed/glp4/600/900" alt=""><span class="dur">38 мин</span><span class="play"><svg viewBox="0 0 10 12" fill="#000"><path d="M0 0l10 6-10 6z"/></svg></span></div><div class="t">Климат как система, а не график</div><div class="w">Климатолог</div><div class="f">Климат</div></article>
+      <article class="poster"><div class="pic"><img src="https://picsum.photos/seed/glp5/600/900" alt=""><span class="dur">47 мин</span><span class="play"><svg viewBox="0 0 10 12" fill="#000"><path d="M0 0l10 6-10 6z"/></svg></span></div><div class="t">Что считать доказательством</div><div class="w">Философ науки</div><div class="f">Философия</div></article>
+      <article class="poster"><div class="pic"><img src="https://picsum.photos/seed/glp6/600/900" alt=""><span class="dur">55 мин</span><span class="play"><svg viewBox="0 0 10 12" fill="#000"><path d="M0 0l10 6-10 6z"/></svg></span></div><div class="t">Красота в доказательстве</div><div class="w">Математик</div><div class="f">Математика</div></article>
+      <article class="poster"><div class="pic"><img src="https://picsum.photos/seed/glp7/600/900" alt=""><span class="dur">1 ч 12</span><span class="play"><svg viewBox="0 0 10 12" fill="#000"><path d="M0 0l10 6-10 6z"/></svg></span></div><div class="t">Поля, частицы и пределы моделей</div><div class="w">Физик-теоретик</div><div class="f">Физика</div></article>
+      <article class="poster"><div class="pic"><img src="https://picsum.photos/seed/glp8/600/900" alt=""><span class="dur">44 мин</span><span class="play"><svg viewBox="0 0 10 12" fill="#000"><path d="M0 0l10 6-10 6z"/></svg></span></div><div class="t">Как культура думает технологией</div><div class="w">Антрополог</div><div class="f">Антропология</div></article>
+      <article class="poster"><div class="pic"><img src="https://picsum.photos/seed/glp9/600/900" alt=""><span class="dur">36 мин</span><span class="play"><svg viewBox="0 0 10 12" fill="#000"><path d="M0 0l10 6-10 6z"/></svg></span></div><div class="t">Наукометрия и её искажения</div><div class="w">Социолог науки</div><div class="f">ИИ и знание</div></article>
+      <article class="poster"><div class="pic"><img src="https://picsum.photos/seed/glp10/600/900" alt=""><span class="dur">49 мин</span><span class="play"><svg viewBox="0 0 10 12" fill="#000"><path d="M0 0l10 6-10 6z"/></svg></span></div><div class="t">Язык, мозг и языковые модели</div><div class="w">Психолингвист</div><div class="f">Нейронаука</div></article>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="sec-head"><h2>Лекция недели</h2><a class="more" href="#">подробнее →</a></div>
+    <div class="feature">
+      <div class="still"><img src="https://picsum.photos/seed/glfeat4/1200/680" alt=""><span class="play"><svg viewBox="0 0 10 12" fill="#000"><path d="M0 0l10 6-10 6z"/></svg></span></div>
+      <div class="meta">
+        <div class="tag">ИИ и знание · 52 мин · субтитры RU / EN</div>
+        <h3>Что ИИ делает с научным методом</h3>
+        <div class="who">Приглашённый учёный · университет</div>
+        <p class="desc">На стыке эпистемологии и машинного обучения: где ИИ ускоряет исследование, а где подменяет понимание беглостью. С оговорками против себя.</p>
+        <div class="row"><button class="btn">▶ Смотреть</button><span>+ в список</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="sec-head"><h2>Сезоны и подборки</h2><a class="more" href="#">все подборки →</a></div>
+    <div class="cols">
+      <div class="col"><img src="https://picsum.photos/seed/glcol1/900/600" alt=""><div class="ov"><div class="n">Сезон 01</div><h3>Расколдовать ИИ</h3><div class="count">6 лекций</div></div></div>
+      <div class="col"><img src="https://picsum.photos/seed/glcol2/900/600" alt=""><div class="ov"><div class="n">Сезон 02</div><h3>Эта лекция изменила меня</h3><div class="count">8 лекций</div></div></div>
+      <div class="col"><img src="https://picsum.photos/seed/glcol3/900/600" alt=""><div class="ov"><div class="n">Сезон 03</div><h3>Инфраструктура знания</h3><div class="count">5 лекций</div></div></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div>Garden — отобранные лекции настоящих учёных. Прототип, 2026.</div>
+  <div><a href="#">О проекте</a> · <a href="#">Как отбираем</a> · <a href="#">Предложить лекцию</a> · <a href="#">Подписка</a></div>
+</footer>
+
+<script>
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.addEventListener('click', function(){
+      document.querySelectorAll('.chip').forEach(function(x){ x.classList.remove('active'); });
+      c.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
